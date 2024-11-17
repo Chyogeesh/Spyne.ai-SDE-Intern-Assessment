@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  title: Car Management API
+  description: API for managing cars
+  version: 1.0.0
+paths:
+  /api/signup:
+    post:
+      summary: Sign up a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        201:
+          description: User created successfully
