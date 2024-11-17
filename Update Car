@@ -1,0 +1,14 @@
+app.put('/api/cars/:id', upload.array('images', 10), async (req, res) => {
+    const { title, description, tags } = req.body;
+    const images = req.files.map(file => file.path);
+    try {
+        const car = await Car.findOneAndUpdate(
+            { _id: req.params.id, userId: req.userId },
+            { title, description, tags, images },
+            { new: true }
+        );
+        res.status(200).json(car);
+    } catch (error) {
+        res.status(400).json({ error: 'Error updating car' });
+    }
+});
